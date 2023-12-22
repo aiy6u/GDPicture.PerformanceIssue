@@ -1,0 +1,59 @@
+﻿@model List<long>
+
+@{
+    Layout = null;
+    ViewBag.Title = "View Document";
+
+    var totalTimeInMills = 0L;
+    for (int i = 0; i < Model.Count; i++)
+    {
+        totalTimeInMills += Model[i];
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reproduce</title>
+    <style>
+        .divider {
+            border-right: 1px solid #0094ff;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>DONT HAVE ANY ACTION ELSE HERE</div>
+    <div>ONLY BLANK PAGE</div>
+
+    <div>Total time (ms) of SelectedPage method spend:@totalTimeInMills (ms)</div>
+    <div>Total time (s) of SelectedPage method spend: @(totalTimeInMills/1000) (s)</div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Page Index
+                </th>
+                <th>
+                    Spend times
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @(i+1)
+                    </td>
+                    <td>
+                        @(Model[i]) (ms)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
